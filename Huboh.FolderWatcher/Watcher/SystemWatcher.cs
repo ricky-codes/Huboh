@@ -49,13 +49,13 @@ namespace Huboh.FolderWatcher.Watcher
 
         public MetadataParser GetMetadataParser()
         {
-            Console.WriteLine("[metadataParser] Instanciating...");
+            Console.WriteLine("[metadataParser] created");
             return new MetadataParser();
         }
 
         public UnitOfWork GetUnitOfWork()
         {
-            Console.WriteLine("[unitOfWork] Instanciating...");
+            Console.WriteLine("[unitOfWork] created");
             return new UnitOfWork();
         }
     }
