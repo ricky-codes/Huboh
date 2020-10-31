@@ -44,9 +44,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IHandler.cs" />
+    <Compile Include="Interfaces\ISystemWatcher.cs" />
     <Compile Include="Main\Handler.cs" />
     <Compile Include="Mp3MetadataParser\MetadataParser.cs" />
-    <Compile Include="Interfaces\IDependencies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Watcher\SystemWatcher.cs" />
   </ItemGroup>

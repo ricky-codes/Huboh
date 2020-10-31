@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 using Huboh.Domain.Repository;
 using Huboh.Domain.Services;
 using Huboh.EntityFramework.Models;
-using Huboh.FolderWatcher.Interfaces;
 using Huboh.FolderWatcher.Watcher;
 
 namespace Test
 {
-    class Program : IDependencies
+    class Program
     {
 
         static async Task Main(string[] args)
@@ -24,6 +23,8 @@ namespace Test
             //DatabaseActivity databaseActivity = new DatabaseActivity();
 
             SystemWatcher systemWatcher = new SystemWatcher("C:\\Users\\ricar\\Music\\Música", "*.mp3");
+
+            
 
             //databaseActivity.DeleteSongsDb();
 

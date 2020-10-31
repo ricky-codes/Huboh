@@ -2,43 +2,54 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Timers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Huboh.Domain.Services;
 using Huboh.EntityFramework.Models;
 using Huboh.FolderWatcher.Activities;
 using Huboh.FolderWatcher.Activities.Mp3MetadataParser;
+using Huboh.FolderWatcher.Interfaces;
 
 namespace Huboh.FolderWatcher.Main
 {
-    public class Handler
+    public class Handler : IHandler
     {
         private UnitOfWork _unitOfWork;
         private MetadataParser _metadataParser;
+        private string _path;
 
-        public Handler(UnitOfWork unitOfWork, MetadataParser metadataParser)
+
+        private List<string> deletedFilesToProcess = new List<string>();
+        private List<string> createdFilesToProcess = new List<string>();
+
+        public Handler(UnitOfWork unitOfWork, MetadataParser metadataParser , string path)
         {
             this._unitOfWork = unitOfWork;
             this._metadataParser = metadataParser;
+            this._path = path;
         }
 
-
-        public void FileChangedHandler(FileSystemEventArgs e)
+        public void FileChangedHandler(object sender, FileSystemEventArgs e)
         {
-            if(e.ChangeType == WatcherChangeTypes.Deleted)
+            if (e.ChangeType == WatcherChangeTypes.Deleted)
             {
-                int affectedRecordId = this._unitOfWork.SongRepository.GetAll().First(_song => _song.musicCompletePath == e.FullPath).id;
-                this._unitOfWork.SongRepository.Delete(affectedRecordId);
+                //int affectedRecordId = this._unitOfWork.SongRepository.GetAll().First(_song => _song.musicCompletePath == e.FullPath).id;
+                //this._unitOfWork.SongRepository.Delete(affectedRecordId);
             }
             else if(e.ChangeType == WatcherChangeTypes.Created)
             {
-                song newSongToDB = this._metadataParser.GetSongObject(e.FullPath);
-                this._unitOfWork.SongRepository.Insert(newSongToDB);
+                createdFilesToProcess.Add(e.FullPath);
+                Console.WriteLine(createdFilesToProcess.Count.ToString());
+
+                //song newSongToDB = this._metadataParser.GetSongObjectAsync(e.FullPath, _path).Result;
+                //this._unitOfWork.SongRepository.Insert(newSongToDB);
             }
-            this._unitOfWork.Save();
+            //this._unitOfWork.Save();
         }
 
-        public void FileRenamedHandler(RenamedEventArgs e)
+        public void FileRenamedHandler(object sender, RenamedEventArgs e)
         {
             //TODO Encapsulate inside a try/catch
             //Gets the ID of the renamed file to use in the Update() function
