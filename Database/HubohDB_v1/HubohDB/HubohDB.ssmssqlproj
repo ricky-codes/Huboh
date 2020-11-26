@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="HubohDB">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="RICARDO\SQLEXPRESS:RICARDO\ricar">
+          <Created>2020-11-15T09:41:12.1339663+00:00</Created>
+          <Type>SQL</Type>
+          <Server>RICARDO\SQLEXPRESS</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="CreateDatabase_v1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RICARDO\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>RICARDO\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>CreateDatabase_v1.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateProcedures_v1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RICARDO\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>RICARDO\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>CreateProcedures_v1.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTables_v1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RICARDO\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>RICARDO\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>CreateTables_v1.sql</FullPath>
+        </FileNode>
+        <FileNode Name="InsertTestData_0_v1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RICARDO\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>RICARDO\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>InsertTestData_0_v1.sql</FullPath>
+        </FileNode>
+        <FileNode Name="InsertTestData_1_v1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RICARDO\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>RICARDO\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>InsertTestData_1_v1.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SelectionQuery_v1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:RICARDO\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>RICARDO\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SelectionQuery_v1.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

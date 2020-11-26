@@ -53,56 +53,93 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\HubohDBModel.Context.cs">
+    <Compile Include="Models\Albums.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Artists.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Artists_Albums.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Artist_Songs.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Composers.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Composers_Songs.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModelV1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HubohDBModel.Context.tt</DependentUpon>
+      <DependentUpon>DBModelV1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HubohDBModel.cs">
+    <Compile Include="Models\DBModelV1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HubohDBModel.tt</DependentUpon>
+      <DependentUpon>DBModelV1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HubohDBModel.Designer.cs">
+    <Compile Include="Models\DBModelV1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HubohDBModel.edmx</DependentUpon>
+      <DependentUpon>DBModelV1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\playlist.cs">
-      <DependentUpon>HubohDBModel.tt</DependentUpon>
+    <Compile Include="Models\FilePaths.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\playlist_song.cs">
-      <DependentUpon>HubohDBModel.tt</DependentUpon>
+    <Compile Include="Models\Genres.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\song.cs">
-      <DependentUpon>HubohDBModel.tt</DependentUpon>
+    <Compile Include="Models\Genres_Songs.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Lyrics.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Publishers.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Songs.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>DBModelV1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Models\HubohDBModel.edmx">
+    <EntityDeploy Include="Models\DBModelV1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HubohDBModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DBModelV1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\HubohDBModel.edmx.diagram">
-      <DependentUpon>HubohDBModel.edmx</DependentUpon>
+    <None Include="Models\DBModelV1.edmx.diagram">
+      <DependentUpon>DBModelV1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="Models\HubohDBModel.Context.tt">
+    <Content Include="Models\DBModelV1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HubohDBModel.edmx</DependentUpon>
-      <LastGenOutput>HubohDBModel.Context.cs</LastGenOutput>
+      <DependentUpon>DBModelV1.edmx</DependentUpon>
+      <LastGenOutput>DBModelV1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\HubohDBModel.tt">
+    <Content Include="Models\DBModelV1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HubohDBModel.edmx</DependentUpon>
-      <LastGenOutput>HubohDBModel.cs</LastGenOutput>
+      <DependentUpon>DBModelV1.edmx</DependentUpon>
+      <LastGenOutput>DBModelV1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,13 +12,13 @@ namespace Huboh.EntityFramework.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class playlist_song
+    public partial class Artist_Songs
     {
-        public int id { get; set; }
-        public Nullable<int> music { get; set; }
-        public Nullable<int> playlist { get; set; }
+        public int artist_SongsID { get; set; }
+        public Nullable<int> songID { get; set; }
+        public Nullable<int> artistID { get; set; }
     
-        public virtual playlist playlist1 { get; set; }
-        public virtual song song { get; set; }
+        public virtual Artists Artists { get; set; }
+        public virtual Songs Songs { get; set; }
     }
 }

@@ -22,7 +22,6 @@ namespace Huboh.FolderWatcher.Main
         private string _path;
         private System.Timers.Timer _notificationTimer;
 
-
         private List<string> deletedFilesToProcess = new List<string>();
         private List<string> createdFilesToProcess = new List<string>();
 
@@ -48,30 +47,27 @@ namespace Huboh.FolderWatcher.Main
             else if(e.ChangeType == WatcherChangeTypes.Created)
             {
                 createdFilesToProcess.Add(e.FullPath);
-
-                //song newSongToDB = this._metadataParser.GetSongObjectAsync(e.FullPath, _path).Result;
-                //this._unitOfWork.SongRepository.Insert(newSongToDB);
             }
             //this._unitOfWork.Save();
         }
 
         public void FileRenamedHandler(object sender, RenamedEventArgs e)
         {
-            //TODO Encapsulate inside a try/catch
-            //Gets the ID of the renamed file to use in the Update() function
-            int affectedRecordId = this._unitOfWork.SongRepository.GetAll().First(_song => _song.musicCompletePath == e.OldFullPath).id; 
-            //Gets the object that corresponds to the id
-            song affectedRecord = this._unitOfWork.SongRepository.GetByID(affectedRecordId);
+            try
+            {
+                int affectedRecordId = this._unitOfWork.FilepathsRepository.GetAll().First(_file => _file.fileFullpath == e.OldFullPath).filePathID;
+                FilePaths affectedRecord = this._unitOfWork.FilepathsRepository.GetByID(affectedRecordId);
 
-            //Updates the path and the file name
-            affectedRecord.musicCompletePath = e.FullPath;
-            affectedRecord.musicFilename = e.Name;
+                affectedRecord.fileFullpath = e.FullPath;
+                affectedRecord.fileFilename = e.Name;
 
-            //Creates a new object, for the sake of comprehension
-            song newDBRecord = affectedRecord;
-
-            this._unitOfWork.SongRepository.Update(affectedRecordId, newDBRecord);
-            this._unitOfWork.Save();
+                this._unitOfWork.FilepathsRepository.Update(affectedRecordId, affectedRecord);
+                this._unitOfWork.Save();
+            }
+            catch
+            {
+                Console.WriteLine("[database]: Error; Cannot find the record for {0}", e.OldFullPath);
+            }
         }
 
 
@@ -95,9 +91,20 @@ namespace Huboh.FolderWatcher.Main
         {
             Console.WriteLine("[createdFilesToProcess] {0}", createdFilesToProcess.Count.ToString());
             Console.WriteLine("[deletedFilesToProcess] {0}", deletedFilesToProcess.Count.ToString());
+
             //Process the lists
             //...
             //...
+
+            if(createdFilesToProcess.Count > 0)
+            {
+                
+            }
+            if(deletedFilesToProcess.Count > 0)
+            {
+
+            }
+
             _notificationTimer.Stop();
             Console.WriteLine("\n[timer] Elapsed");
             createdFilesToProcess.Clear();

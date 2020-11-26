@@ -12,19 +12,20 @@ namespace Huboh.EntityFramework.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class playlist
+    public partial class FilePaths
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public playlist()
+        public FilePaths()
         {
-            this.playlist_song = new HashSet<playlist_song>();
+            this.Songs = new HashSet<Songs>();
         }
     
-        public int playlistIndex { get; set; }
-        public string playlistName { get; set; }
-        public Nullable<int> playlistMusicCount { get; set; }
+        public int filePathID { get; set; }
+        public string fileFilename { get; set; }
+        public string fileDirectory { get; set; }
+        public string fileFullpath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<playlist_song> playlist_song { get; set; }
+        public virtual ICollection<Songs> Songs { get; set; }
     }
 }

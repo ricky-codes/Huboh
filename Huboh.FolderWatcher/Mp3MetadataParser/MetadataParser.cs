@@ -11,27 +11,30 @@ namespace Huboh.FolderWatcher.Activities.Mp3MetadataParser
     public class MetadataParser
     {
         int i = 0;
-        public async Task<song> GetSongObjectAsync(string targetSongPath, string path)
+        
+        private song CreateSongObject(string targetSongPath, string directory)
         {
-            return await Task.Run(() => {
-                song newSong = new song()
-                {
-                    title = !string.IsNullOrEmpty(TagLib.File.Create(targetSongPath).Tag.Title) ?
-                            TagLib.File.Create(targetSongPath).Tag.Title :
-                            targetSongPath.Substring(path.Length + 1),
-                    artist = !string.IsNullOrEmpty(TagLib.File.Create(targetSongPath).Tag.FirstPerformer) ?
-                                TagLib.File.Create(targetSongPath).Tag.FirstPerformer :
-                                !string.IsNullOrEmpty(TagLib.File.Create(targetSongPath).Tag.FirstAlbumArtist) ?
-                                TagLib.File.Create(targetSongPath).Tag.FirstAlbumArtist :
-                                "Desconhecido",
-                    fileIndex = i++,
-                    sourceDirectory = path,
-                    musicCompletePath = targetSongPath,
-                    albumName = TagLib.File.Create(targetSongPath).Tag.Album,
-                    musicFilename = targetSongPath.Remove(0, path.Length + 1)
-                };
-                return newSong;
-            });
+            return new song() {
+                title = !string.IsNullOrEmpty(TagLib.File.Create(targetSongPath).Tag.Title) ?
+                        TagLib.File.Create(targetSongPath).Tag.Title :
+                        targetSongPath.Substring(directory.Length + 1),
+                artist = !string.IsNullOrEmpty(TagLib.File.Create(targetSongPath).Tag.FirstPerformer) ?
+                            TagLib.File.Create(targetSongPath).Tag.FirstPerformer :
+                            !string.IsNullOrEmpty(TagLib.File.Create(targetSongPath).Tag.FirstAlbumArtist) ?
+                            TagLib.File.Create(targetSongPath).Tag.FirstAlbumArtist :
+                            "Desconhecido",
+                fileIndex = i++,
+                sourceDirectory = directory,
+                musicCompletePath = targetSongPath,
+                albumName = TagLib.File.Create(targetSongPath).Tag.Album,
+                musicFilename = targetSongPath.Remove(0, directory.Length + 1)
+            };
+        }
+
+        public async Task<song> GetSongObjectAsync(string filePath, string directory)
+        {
+            song songObject = await Task.FromResult<song>(CreateSongObject(filePath, directory));
+            return songObject;
         }
     }
 }

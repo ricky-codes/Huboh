@@ -8,32 +8,153 @@ namespace Huboh.Domain.Services
     public class UnitOfWork : IDisposable
     {
 
-        private HubohDBEntities _context = new HubohDBEntities();
-        private GenericRepository<song> _songRepository;
-        private GenericRepository<playlist> _playlistRepository;
+        private HubohDB_v1Entities _context = new HubohDB_v1Entities();
+
+        private GenericRepository<Songs> _songRepository;
+        private GenericRepository<Artists> _artistsRepository;
+        private GenericRepository<Albums> _albumsRepository;
+        private GenericRepository<Genres> _genresRepository;
+        private GenericRepository<Publishers> _publishersRepository;
+        private GenericRepository<Composers> _composersRepository;
+        private GenericRepository<FilePaths> _filepathsRepository;
+
+        private GenericRepository<Composers_Songs> _composers_songsRepository;
+        private GenericRepository<Artists_Albums> _artists_albumsRepository;
+        private GenericRepository<Artist_Songs> _artist_songsRepository;
+        private GenericRepository<Genres_Songs> _genres_songsRepository;
 
 
-        public GenericRepository<song> SongRepository
+        public GenericRepository<Songs> SongsRepository
         {
             get
             {
                 if(this._songRepository == null)
                 {
-                    this._songRepository = new GenericRepository<song>(_context);
+                    this._songRepository = new GenericRepository<Songs>(_context);
                 }
                 return _songRepository;
             }
         }
 
-        public GenericRepository<playlist> PlaylistRepository
+        public GenericRepository<Artists> ArtistsRepository
         {
             get
             {
-                if (this._playlistRepository == null)
+                if (this._artistsRepository == null)
                 {
-                    this._playlistRepository = new GenericRepository<playlist>(_context);
+                    this._artistsRepository = new GenericRepository<Artists>(_context);
                 }
-                return _playlistRepository;
+                return _artistsRepository;
+            }
+        }
+        
+        public GenericRepository<Albums> AlbumsRepository
+        {
+            get
+            {
+                if (this._albumsRepository == null)
+                {
+                    this._albumsRepository = new GenericRepository<Albums>(_context);
+                }
+                return _albumsRepository;
+            }
+        }
+        
+        public GenericRepository<Genres> GenresRepository
+        {
+            get
+            {
+                if (this._genresRepository == null)
+                {
+                    this._genresRepository = new GenericRepository<Genres>(_context);
+                }
+                return _genresRepository;
+            }
+        }
+        
+        public GenericRepository<Publishers> PublishersRepository
+        {
+            get
+            {
+                if (this._publishersRepository == null)
+                {
+                    this._publishersRepository = new GenericRepository<Publishers>(_context);
+                }
+                return _publishersRepository;
+            }
+        }
+        
+        public GenericRepository<Composers> ComposersRepository
+        {
+            get
+            {
+                if (this._composersRepository == null)
+                {
+                    this._composersRepository = new GenericRepository<Composers>(_context);
+                }
+                return _composersRepository;
+            }
+        }
+        
+        public GenericRepository<FilePaths> FilepathsRepository
+        {
+            get
+            {
+                if (this._filepathsRepository == null)
+                {
+                    this._filepathsRepository = new GenericRepository<FilePaths>(_context);
+                }
+                return _filepathsRepository;
+            }
+        }
+        
+
+
+        public GenericRepository<Composers_Songs> Composers_SongsRepository
+        {
+            get
+            {
+                if (this._composers_songsRepository == null)
+                {
+                    this._composers_songsRepository = new GenericRepository<Composers_Songs>(_context);
+                }
+                return _composers_songsRepository;
+            }
+        }
+        
+        public GenericRepository<Artists_Albums> Artists_AlbumsRepository
+        {
+            get
+            {
+                if (this._artists_albumsRepository == null)
+                {
+                    this._artists_albumsRepository = new GenericRepository<Artists_Albums>(_context);
+                }
+                return _artists_albumsRepository;
+            }
+        }
+
+        public GenericRepository<Artist_Songs> Artist_SongsRepository
+        {
+            get
+            {
+                if (this._artist_songsRepository == null)
+                {
+                    this._artist_songsRepository = new GenericRepository<Artist_Songs>(_context);
+                }
+                return _artist_songsRepository;
+            }
+        }
+
+        public GenericRepository<Genres_Songs> Genres_SongsRepository
+        {
+            get
+            {
+                if (this._genres_songsRepository == null)
+                {
+                    this._genres_songsRepository = new GenericRepository<Genres_Songs>(_context);
+                }
+                return _genres_songsRepository;
             }
         }
 

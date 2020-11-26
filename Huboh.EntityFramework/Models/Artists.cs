@@ -12,24 +12,25 @@ namespace Huboh.EntityFramework.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class song
+    public partial class Artists
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public song()
+        public Artists()
         {
-            this.playlist_song = new HashSet<playlist_song>();
+            this.Artist_Songs = new HashSet<Artist_Songs>();
+            this.Artists_Albums = new HashSet<Artists_Albums>();
         }
     
-        public int id { get; set; }
-        public Nullable<int> fileIndex { get; set; }
-        public string title { get; set; }
-        public string artist { get; set; }
-        public string albumName { get; set; }
-        public string sourceDirectory { get; set; }
-        public string musicFilename { get; set; }
-        public string musicCompletePath { get; set; }
+        public int artistID { get; set; }
+        public string artistName { get; set; }
+        public Nullable<System.DateTime> birthday { get; set; }
+        public Nullable<int> albumCount { get; set; }
+        public Nullable<int> publisherID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<playlist_song> playlist_song { get; set; }
+        public virtual ICollection<Artist_Songs> Artist_Songs { get; set; }
+        public virtual Publishers Publishers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Artists_Albums> Artists_Albums { get; set; }
     }
 }
