@@ -28,14 +28,10 @@ namespace Huboh.EntityFramework.Models
         }
     
         public virtual DbSet<Albums> Albums { get; set; }
-        public virtual DbSet<Artist_Songs> Artist_Songs { get; set; }
         public virtual DbSet<Artists> Artists { get; set; }
-        public virtual DbSet<Artists_Albums> Artists_Albums { get; set; }
         public virtual DbSet<Composers> Composers { get; set; }
-        public virtual DbSet<Composers_Songs> Composers_Songs { get; set; }
         public virtual DbSet<FilePaths> FilePaths { get; set; }
         public virtual DbSet<Genres> Genres { get; set; }
-        public virtual DbSet<Genres_Songs> Genres_Songs { get; set; }
         public virtual DbSet<Lyrics> Lyrics { get; set; }
         public virtual DbSet<Publishers> Publishers { get; set; }
         public virtual DbSet<Songs> Songs { get; set; }
@@ -44,6 +40,15 @@ namespace Huboh.EntityFramework.Models
         public virtual int DisableAllConstraints()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DisableAllConstraints");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> InsertGenre(string p_genre)
+        {
+            var p_genreParameter = p_genre != null ?
+                new ObjectParameter("p_genre", p_genre) :
+                new ObjectParameter("p_genre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("InsertGenre", p_genreParameter);
         }
     
         public virtual int ReseedAll()

@@ -16,11 +16,11 @@
         </EntityType>
         <EntityType Name="Artist_Songs">
           <Key>
-            <PropertyRef Name="artist_SongsID" />
+            <PropertyRef Name="songID" />
+            <PropertyRef Name="artistID" />
           </Key>
-          <Property Name="artist_SongsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="songID" Type="int" />
-          <Property Name="artistID" Type="int" />
+          <Property Name="songID" Type="int" Nullable="false" />
+          <Property Name="artistID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Artists">
           <Key>
@@ -34,11 +34,11 @@
         </EntityType>
         <EntityType Name="Artists_Albums">
           <Key>
-            <PropertyRef Name="artist_AlbumID" />
+            <PropertyRef Name="albumID" />
+            <PropertyRef Name="artistID" />
           </Key>
-          <Property Name="artist_AlbumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="albumID" Type="int" />
-          <Property Name="artistID" Type="int" />
+          <Property Name="albumID" Type="int" Nullable="false" />
+          <Property Name="artistID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Composers">
           <Key>
@@ -49,11 +49,11 @@
         </EntityType>
         <EntityType Name="Composers_Songs">
           <Key>
-            <PropertyRef Name="composers_SongsID" />
+            <PropertyRef Name="composerID" />
+            <PropertyRef Name="songID" />
           </Key>
-          <Property Name="composers_SongsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="composerID" Type="int" />
-          <Property Name="songID" Type="int" />
+          <Property Name="composerID" Type="int" Nullable="false" />
+          <Property Name="songID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="FilePaths">
           <Key>
@@ -73,11 +73,11 @@
         </EntityType>
         <EntityType Name="Genres_Songs">
           <Key>
-            <PropertyRef Name="genres_songsID" />
+            <PropertyRef Name="genreID" />
+            <PropertyRef Name="songID" />
           </Key>
-          <Property Name="genres_songsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="genreID" Type="int" />
-          <Property Name="songID" Type="int" />
+          <Property Name="genreID" Type="int" Nullable="false" />
+          <Property Name="songID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Lyrics">
           <Key>
@@ -115,8 +115,8 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK__Artist_So__artis__0E6E26BF">
-          <End Role="Artists" Type="Self.Artists" Multiplicity="0..1">
+        <Association Name="FK__Artist_So__artis__05A3D694">
+          <End Role="Artists" Type="Self.Artists" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Artist_Songs" Type="Self.Artist_Songs" Multiplicity="*" />
@@ -129,8 +129,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Artist_So__songI__0D7A0286">
-          <End Role="Songs" Type="Self.Songs" Multiplicity="0..1">
+        <Association Name="FK__Artist_So__songI__04AFB25B">
+          <End Role="Songs" Type="Self.Songs" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Artist_Songs" Type="Self.Artist_Songs" Multiplicity="*" />
@@ -143,7 +143,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Artists__publish__03F0984C">
+        <Association Name="FK__Artists__publish__7B264821">
           <End Role="Publishers" Type="Self.Publishers" Multiplicity="0..1" />
           <End Role="Artists" Type="Self.Artists" Multiplicity="*" />
           <ReferentialConstraint>
@@ -155,8 +155,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Artists_A__album__114A936A">
-          <End Role="Albums" Type="Self.Albums" Multiplicity="0..1">
+        <Association Name="FK__Artists_A__album__0880433F">
+          <End Role="Albums" Type="Self.Albums" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Artists_Albums" Type="Self.Artists_Albums" Multiplicity="*" />
@@ -169,8 +169,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Artists_A__artis__123EB7A3">
-          <End Role="Artists" Type="Self.Artists" Multiplicity="0..1">
+        <Association Name="FK__Artists_A__artis__09746778">
+          <End Role="Artists" Type="Self.Artists" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Artists_Albums" Type="Self.Artists_Albums" Multiplicity="*" />
@@ -183,8 +183,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Composers__compo__09A971A2">
-          <End Role="Composers" Type="Self.Composers" Multiplicity="0..1">
+        <Association Name="FK__Composers__compo__00DF2177">
+          <End Role="Composers" Type="Self.Composers" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Composers_Songs" Type="Self.Composers_Songs" Multiplicity="*" />
@@ -197,8 +197,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Composers__songI__0A9D95DB">
-          <End Role="Songs" Type="Self.Songs" Multiplicity="0..1">
+        <Association Name="FK__Composers__songI__01D345B0">
+          <End Role="Songs" Type="Self.Songs" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Composers_Songs" Type="Self.Composers_Songs" Multiplicity="*" />
@@ -211,8 +211,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Genres_So__genre__151B244E">
-          <End Role="Genres" Type="Self.Genres" Multiplicity="0..1">
+        <Association Name="FK__Genres_So__genre__0C50D423">
+          <End Role="Genres" Type="Self.Genres" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Genres_Songs" Type="Self.Genres_Songs" Multiplicity="*" />
@@ -225,8 +225,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Genres_So__songI__160F4887">
-          <End Role="Songs" Type="Self.Songs" Multiplicity="0..1">
+        <Association Name="FK__Genres_So__songI__0D44F85C">
+          <End Role="Songs" Type="Self.Songs" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Genres_Songs" Type="Self.Genres_Songs" Multiplicity="*" />
@@ -239,7 +239,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Songs__filepathI__7D439ABD">
+        <Association Name="FK__Songs__filepathI__74794A92">
           <End Role="FilePaths" Type="Self.FilePaths" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -253,7 +253,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Songs__lyricsID__7C4F7684">
+        <Association Name="FK__Songs__lyricsID__73852659">
           <End Role="Lyrics" Type="Self.Lyrics" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -269,6 +269,9 @@
         </Association>
         <Function Name="DisableAllConstraints" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="InsertGenre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_genre" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="ReseedAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -315,47 +318,47 @@
           <EntitySet Name="Publishers" EntityType="Self.Publishers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Songs" EntityType="Self.Songs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Artist_So__artis__0E6E26BF" Association="Self.FK__Artist_So__artis__0E6E26BF">
+          <AssociationSet Name="FK__Artist_So__artis__05A3D694" Association="Self.FK__Artist_So__artis__05A3D694">
             <End Role="Artists" EntitySet="Artists" />
             <End Role="Artist_Songs" EntitySet="Artist_Songs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Artist_So__songI__0D7A0286" Association="Self.FK__Artist_So__songI__0D7A0286">
+          <AssociationSet Name="FK__Artist_So__songI__04AFB25B" Association="Self.FK__Artist_So__songI__04AFB25B">
             <End Role="Songs" EntitySet="Songs" />
             <End Role="Artist_Songs" EntitySet="Artist_Songs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Artists__publish__03F0984C" Association="Self.FK__Artists__publish__03F0984C">
+          <AssociationSet Name="FK__Artists__publish__7B264821" Association="Self.FK__Artists__publish__7B264821">
             <End Role="Publishers" EntitySet="Publishers" />
             <End Role="Artists" EntitySet="Artists" />
           </AssociationSet>
-          <AssociationSet Name="FK__Artists_A__album__114A936A" Association="Self.FK__Artists_A__album__114A936A">
+          <AssociationSet Name="FK__Artists_A__album__0880433F" Association="Self.FK__Artists_A__album__0880433F">
             <End Role="Albums" EntitySet="Albums" />
             <End Role="Artists_Albums" EntitySet="Artists_Albums" />
           </AssociationSet>
-          <AssociationSet Name="FK__Artists_A__artis__123EB7A3" Association="Self.FK__Artists_A__artis__123EB7A3">
+          <AssociationSet Name="FK__Artists_A__artis__09746778" Association="Self.FK__Artists_A__artis__09746778">
             <End Role="Artists" EntitySet="Artists" />
             <End Role="Artists_Albums" EntitySet="Artists_Albums" />
           </AssociationSet>
-          <AssociationSet Name="FK__Composers__compo__09A971A2" Association="Self.FK__Composers__compo__09A971A2">
+          <AssociationSet Name="FK__Composers__compo__00DF2177" Association="Self.FK__Composers__compo__00DF2177">
             <End Role="Composers" EntitySet="Composers" />
             <End Role="Composers_Songs" EntitySet="Composers_Songs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Composers__songI__0A9D95DB" Association="Self.FK__Composers__songI__0A9D95DB">
+          <AssociationSet Name="FK__Composers__songI__01D345B0" Association="Self.FK__Composers__songI__01D345B0">
             <End Role="Songs" EntitySet="Songs" />
             <End Role="Composers_Songs" EntitySet="Composers_Songs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Genres_So__genre__151B244E" Association="Self.FK__Genres_So__genre__151B244E">
+          <AssociationSet Name="FK__Genres_So__genre__0C50D423" Association="Self.FK__Genres_So__genre__0C50D423">
             <End Role="Genres" EntitySet="Genres" />
             <End Role="Genres_Songs" EntitySet="Genres_Songs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Genres_So__songI__160F4887" Association="Self.FK__Genres_So__songI__160F4887">
+          <AssociationSet Name="FK__Genres_So__songI__0D44F85C" Association="Self.FK__Genres_So__songI__0D44F85C">
             <End Role="Songs" EntitySet="Songs" />
             <End Role="Genres_Songs" EntitySet="Genres_Songs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Songs__filepathI__7D439ABD" Association="Self.FK__Songs__filepathI__7D439ABD">
+          <AssociationSet Name="FK__Songs__filepathI__74794A92" Association="Self.FK__Songs__filepathI__74794A92">
             <End Role="FilePaths" EntitySet="FilePaths" />
             <End Role="Songs" EntitySet="Songs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Songs__lyricsID__7C4F7684" Association="Self.FK__Songs__lyricsID__7C4F7684">
+          <AssociationSet Name="FK__Songs__lyricsID__73852659" Association="Self.FK__Songs__lyricsID__73852659">
             <End Role="Lyrics" EntitySet="Lyrics" />
             <End Role="Songs" EntitySet="Songs" />
           </AssociationSet>
@@ -373,17 +376,7 @@
           <Property Name="albumName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="trackCount" Type="Int32" />
           <Property Name="releaseYear" Type="Int32" />
-          <NavigationProperty Name="Artists_Albums" Relationship="Self.FK__Artists_A__album__114A936A" FromRole="Albums" ToRole="Artists_Albums" />
-        </EntityType>
-        <EntityType Name="Artist_Songs">
-          <Key>
-            <PropertyRef Name="artist_SongsID" />
-          </Key>
-          <Property Name="artist_SongsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="songID" Type="Int32" />
-          <Property Name="artistID" Type="Int32" />
-          <NavigationProperty Name="Artists" Relationship="Self.FK__Artist_So__artis__0E6E26BF" FromRole="Artist_Songs" ToRole="Artists" />
-          <NavigationProperty Name="Songs" Relationship="Self.FK__Artist_So__songI__0D7A0286" FromRole="Artist_Songs" ToRole="Songs" />
+          <NavigationProperty Name="Artists" Relationship="Self.Artists_Albums" FromRole="Albums" ToRole="Artists" />
         </EntityType>
         <EntityType Name="Artists">
           <Key>
@@ -394,19 +387,9 @@
           <Property Name="birthday" Type="DateTime" Precision="0" />
           <Property Name="albumCount" Type="Int32" />
           <Property Name="publisherID" Type="Int32" />
-          <NavigationProperty Name="Artist_Songs" Relationship="Self.FK__Artist_So__artis__0E6E26BF" FromRole="Artists" ToRole="Artist_Songs" />
-          <NavigationProperty Name="Publishers" Relationship="Self.FK__Artists__publish__03F0984C" FromRole="Artists" ToRole="Publishers" />
-          <NavigationProperty Name="Artists_Albums" Relationship="Self.FK__Artists_A__artis__123EB7A3" FromRole="Artists" ToRole="Artists_Albums" />
-        </EntityType>
-        <EntityType Name="Artists_Albums">
-          <Key>
-            <PropertyRef Name="artist_AlbumID" />
-          </Key>
-          <Property Name="artist_AlbumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="albumID" Type="Int32" />
-          <Property Name="artistID" Type="Int32" />
-          <NavigationProperty Name="Albums" Relationship="Self.FK__Artists_A__album__114A936A" FromRole="Artists_Albums" ToRole="Albums" />
-          <NavigationProperty Name="Artists" Relationship="Self.FK__Artists_A__artis__123EB7A3" FromRole="Artists_Albums" ToRole="Artists" />
+          <NavigationProperty Name="Publishers" Relationship="Self.FK__Artists__publish__7B264821" FromRole="Artists" ToRole="Publishers" />
+          <NavigationProperty Name="Songs" Relationship="Self.Artist_Songs" FromRole="Artists" ToRole="Songs" />
+          <NavigationProperty Name="Albums" Relationship="Self.Artists_Albums" FromRole="Artists" ToRole="Albums" />
         </EntityType>
         <EntityType Name="Composers">
           <Key>
@@ -414,17 +397,7 @@
           </Key>
           <Property Name="composerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="composerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Composers_Songs" Relationship="Self.FK__Composers__compo__09A971A2" FromRole="Composers" ToRole="Composers_Songs" />
-        </EntityType>
-        <EntityType Name="Composers_Songs">
-          <Key>
-            <PropertyRef Name="composers_SongsID" />
-          </Key>
-          <Property Name="composers_SongsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="composerID" Type="Int32" />
-          <Property Name="songID" Type="Int32" />
-          <NavigationProperty Name="Composers" Relationship="Self.FK__Composers__compo__09A971A2" FromRole="Composers_Songs" ToRole="Composers" />
-          <NavigationProperty Name="Songs" Relationship="Self.FK__Composers__songI__0A9D95DB" FromRole="Composers_Songs" ToRole="Songs" />
+          <NavigationProperty Name="Songs" Relationship="Self.Composers_Songs" FromRole="Composers" ToRole="Songs" />
         </EntityType>
         <EntityType Name="FilePaths">
           <Key>
@@ -434,7 +407,7 @@
           <Property Name="fileFilename" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fileDirectory" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fileFullpath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Songs" Relationship="Self.FK__Songs__filepathI__7D439ABD" FromRole="FilePaths" ToRole="Songs" />
+          <NavigationProperty Name="Songs" Relationship="Self.FK__Songs__filepathI__74794A92" FromRole="FilePaths" ToRole="Songs" />
         </EntityType>
         <EntityType Name="Genres">
           <Key>
@@ -442,17 +415,7 @@
           </Key>
           <Property Name="genreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="genreDescription" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Genres_Songs" Relationship="Self.FK__Genres_So__genre__151B244E" FromRole="Genres" ToRole="Genres_Songs" />
-        </EntityType>
-        <EntityType Name="Genres_Songs">
-          <Key>
-            <PropertyRef Name="genres_songsID" />
-          </Key>
-          <Property Name="genres_songsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="genreID" Type="Int32" />
-          <Property Name="songID" Type="Int32" />
-          <NavigationProperty Name="Genres" Relationship="Self.FK__Genres_So__genre__151B244E" FromRole="Genres_Songs" ToRole="Genres" />
-          <NavigationProperty Name="Songs" Relationship="Self.FK__Genres_So__songI__160F4887" FromRole="Genres_Songs" ToRole="Songs" />
+          <NavigationProperty Name="Songs" Relationship="Self.Genres_Songs" FromRole="Genres" ToRole="Songs" />
         </EntityType>
         <EntityType Name="Lyrics">
           <Key>
@@ -460,7 +423,7 @@
           </Key>
           <Property Name="lyricsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="lyrics1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Songs" Relationship="Self.FK__Songs__lyricsID__7C4F7684" FromRole="Lyrics" ToRole="Songs" />
+          <NavigationProperty Name="Songs" Relationship="Self.FK__Songs__lyricsID__73852659" FromRole="Lyrics" ToRole="Songs" />
         </EntityType>
         <EntityType Name="Publishers">
           <Key>
@@ -468,7 +431,7 @@
           </Key>
           <Property Name="publisherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="publisherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Artists" Relationship="Self.FK__Artists__publish__03F0984C" FromRole="Publishers" ToRole="Artists" />
+          <NavigationProperty Name="Artists" Relationship="Self.FK__Artists__publish__7B264821" FromRole="Publishers" ToRole="Artists" />
         </EntityType>
         <EntityType Name="Songs">
           <Key>
@@ -481,11 +444,11 @@
           <Property Name="bpm" Type="Int32" />
           <Property Name="lyricsID" Type="Int32" />
           <Property Name="filepathID" Type="Int32" />
-          <NavigationProperty Name="Artist_Songs" Relationship="Self.FK__Artist_So__songI__0D7A0286" FromRole="Songs" ToRole="Artist_Songs" />
-          <NavigationProperty Name="Composers_Songs" Relationship="Self.FK__Composers__songI__0A9D95DB" FromRole="Songs" ToRole="Composers_Songs" />
-          <NavigationProperty Name="FilePaths" Relationship="Self.FK__Songs__filepathI__7D439ABD" FromRole="Songs" ToRole="FilePaths" />
-          <NavigationProperty Name="Genres_Songs" Relationship="Self.FK__Genres_So__songI__160F4887" FromRole="Songs" ToRole="Genres_Songs" />
-          <NavigationProperty Name="Lyrics" Relationship="Self.FK__Songs__lyricsID__7C4F7684" FromRole="Songs" ToRole="Lyrics" />
+          <NavigationProperty Name="FilePaths" Relationship="Self.FK__Songs__filepathI__74794A92" FromRole="Songs" ToRole="FilePaths" />
+          <NavigationProperty Name="Lyrics" Relationship="Self.FK__Songs__lyricsID__73852659" FromRole="Songs" ToRole="Lyrics" />
+          <NavigationProperty Name="Artists" Relationship="Self.Artist_Songs" FromRole="Songs" ToRole="Artists" />
+          <NavigationProperty Name="Composers" Relationship="Self.Composers_Songs" FromRole="Songs" ToRole="Composers" />
+          <NavigationProperty Name="Genres" Relationship="Self.Genres_Songs" FromRole="Songs" ToRole="Genres" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -497,49 +460,7 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK__Artists_A__album__114A936A">
-          <End Role="Albums" Type="Self.Albums" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Artists_Albums" Type="Self.Artists_Albums" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Albums">
-              <PropertyRef Name="albumID" />
-            </Principal>
-            <Dependent Role="Artists_Albums">
-              <PropertyRef Name="albumID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Artist_So__artis__0E6E26BF">
-          <End Role="Artists" Type="Self.Artists" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Artist_Songs" Type="Self.Artist_Songs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Artists">
-              <PropertyRef Name="artistID" />
-            </Principal>
-            <Dependent Role="Artist_Songs">
-              <PropertyRef Name="artistID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Artist_So__songI__0D7A0286">
-          <End Role="Songs" Type="Self.Songs" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Artist_Songs" Type="Self.Artist_Songs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Songs">
-              <PropertyRef Name="songID" />
-            </Principal>
-            <Dependent Role="Artist_Songs">
-              <PropertyRef Name="songID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Artists__publish__03F0984C">
+        <Association Name="FK__Artists__publish__7B264821">
           <End Role="Publishers" Type="Self.Publishers" Multiplicity="0..1" />
           <End Role="Artists" Type="Self.Artists" Multiplicity="*" />
           <ReferentialConstraint>
@@ -551,49 +472,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Artists_A__artis__123EB7A3">
-          <End Role="Artists" Type="Self.Artists" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Artists_Albums" Type="Self.Artists_Albums" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Artists">
-              <PropertyRef Name="artistID" />
-            </Principal>
-            <Dependent Role="Artists_Albums">
-              <PropertyRef Name="artistID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Composers__compo__09A971A2">
-          <End Role="Composers" Type="Self.Composers" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Composers_Songs" Type="Self.Composers_Songs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Composers">
-              <PropertyRef Name="composerID" />
-            </Principal>
-            <Dependent Role="Composers_Songs">
-              <PropertyRef Name="composerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Composers__songI__0A9D95DB">
-          <End Role="Songs" Type="Self.Songs" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Composers_Songs" Type="Self.Composers_Songs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Songs">
-              <PropertyRef Name="songID" />
-            </Principal>
-            <Dependent Role="Composers_Songs">
-              <PropertyRef Name="songID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Songs__filepathI__7D439ABD">
+        <Association Name="FK__Songs__filepathI__74794A92">
           <End Role="FilePaths" Type="Self.FilePaths" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -607,35 +486,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Genres_So__genre__151B244E">
-          <End Role="Genres" Type="Self.Genres" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Genres_Songs" Type="Self.Genres_Songs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Genres">
-              <PropertyRef Name="genreID" />
-            </Principal>
-            <Dependent Role="Genres_Songs">
-              <PropertyRef Name="genreID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Genres_So__songI__160F4887">
-          <End Role="Songs" Type="Self.Songs" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Genres_Songs" Type="Self.Genres_Songs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Songs">
-              <PropertyRef Name="songID" />
-            </Principal>
-            <Dependent Role="Genres_Songs">
-              <PropertyRef Name="songID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Songs__lyricsID__7C4F7684">
+        <Association Name="FK__Songs__lyricsID__73852659">
           <End Role="Lyrics" Type="Self.Lyrics" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -649,65 +500,64 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Artist_Songs">
+          <End Role="Artists" Type="Self.Artists" Multiplicity="*" />
+          <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
+        </Association>
+        <Association Name="Artists_Albums">
+          <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
+          <End Role="Artists" Type="Self.Artists" Multiplicity="*" />
+        </Association>
+        <Association Name="Composers_Songs">
+          <End Role="Composers" Type="Self.Composers" Multiplicity="*" />
+          <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
+        </Association>
+        <Association Name="Genres_Songs">
+          <End Role="Genres" Type="Self.Genres" Multiplicity="*" />
+          <End Role="Songs" Type="Self.Songs" Multiplicity="*" />
+        </Association>
         <EntityContainer Name="HubohDB_v1Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Albums" EntityType="Self.Albums" />
-          <EntitySet Name="Artist_Songs" EntityType="Self.Artist_Songs" />
           <EntitySet Name="Artists" EntityType="Self.Artists" />
-          <EntitySet Name="Artists_Albums" EntityType="Self.Artists_Albums" />
           <EntitySet Name="Composers" EntityType="Self.Composers" />
-          <EntitySet Name="Composers_Songs" EntityType="Self.Composers_Songs" />
           <EntitySet Name="FilePaths" EntityType="Self.FilePaths" />
           <EntitySet Name="Genres" EntityType="Self.Genres" />
-          <EntitySet Name="Genres_Songs" EntityType="Self.Genres_Songs" />
           <EntitySet Name="Lyrics" EntityType="Self.Lyrics" />
           <EntitySet Name="Publishers" EntityType="Self.Publishers" />
           <EntitySet Name="Songs" EntityType="Self.Songs" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <AssociationSet Name="FK__Artists_A__album__114A936A" Association="Self.FK__Artists_A__album__114A936A">
-            <End Role="Albums" EntitySet="Albums" />
-            <End Role="Artists_Albums" EntitySet="Artists_Albums" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Artist_So__artis__0E6E26BF" Association="Self.FK__Artist_So__artis__0E6E26BF">
-            <End Role="Artists" EntitySet="Artists" />
-            <End Role="Artist_Songs" EntitySet="Artist_Songs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Artist_So__songI__0D7A0286" Association="Self.FK__Artist_So__songI__0D7A0286">
-            <End Role="Songs" EntitySet="Songs" />
-            <End Role="Artist_Songs" EntitySet="Artist_Songs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Artists__publish__03F0984C" Association="Self.FK__Artists__publish__03F0984C">
+          <AssociationSet Name="FK__Artists__publish__7B264821" Association="Self.FK__Artists__publish__7B264821">
             <End Role="Publishers" EntitySet="Publishers" />
             <End Role="Artists" EntitySet="Artists" />
           </AssociationSet>
-          <AssociationSet Name="FK__Artists_A__artis__123EB7A3" Association="Self.FK__Artists_A__artis__123EB7A3">
-            <End Role="Artists" EntitySet="Artists" />
-            <End Role="Artists_Albums" EntitySet="Artists_Albums" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Composers__compo__09A971A2" Association="Self.FK__Composers__compo__09A971A2">
-            <End Role="Composers" EntitySet="Composers" />
-            <End Role="Composers_Songs" EntitySet="Composers_Songs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Composers__songI__0A9D95DB" Association="Self.FK__Composers__songI__0A9D95DB">
-            <End Role="Songs" EntitySet="Songs" />
-            <End Role="Composers_Songs" EntitySet="Composers_Songs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Songs__filepathI__7D439ABD" Association="Self.FK__Songs__filepathI__7D439ABD">
+          <AssociationSet Name="FK__Songs__filepathI__74794A92" Association="Self.FK__Songs__filepathI__74794A92">
             <End Role="FilePaths" EntitySet="FilePaths" />
             <End Role="Songs" EntitySet="Songs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Genres_So__genre__151B244E" Association="Self.FK__Genres_So__genre__151B244E">
-            <End Role="Genres" EntitySet="Genres" />
-            <End Role="Genres_Songs" EntitySet="Genres_Songs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Genres_So__songI__160F4887" Association="Self.FK__Genres_So__songI__160F4887">
-            <End Role="Songs" EntitySet="Songs" />
-            <End Role="Genres_Songs" EntitySet="Genres_Songs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Songs__lyricsID__7C4F7684" Association="Self.FK__Songs__lyricsID__7C4F7684">
+          <AssociationSet Name="FK__Songs__lyricsID__73852659" Association="Self.FK__Songs__lyricsID__73852659">
             <End Role="Lyrics" EntitySet="Lyrics" />
             <End Role="Songs" EntitySet="Songs" />
           </AssociationSet>
+          <AssociationSet Name="Artist_Songs" Association="Self.Artist_Songs">
+            <End Role="Artists" EntitySet="Artists" />
+            <End Role="Songs" EntitySet="Songs" />
+          </AssociationSet>
+          <AssociationSet Name="Artists_Albums" Association="Self.Artists_Albums">
+            <End Role="Albums" EntitySet="Albums" />
+            <End Role="Artists" EntitySet="Artists" />
+          </AssociationSet>
+          <AssociationSet Name="Composers_Songs" Association="Self.Composers_Songs">
+            <End Role="Composers" EntitySet="Composers" />
+            <End Role="Songs" EntitySet="Songs" />
+          </AssociationSet>
+          <AssociationSet Name="Genres_Songs" Association="Self.Genres_Songs">
+            <End Role="Genres" EntitySet="Genres" />
+            <End Role="Songs" EntitySet="Songs" />
+          </AssociationSet>
           <FunctionImport Name="DisableAllConstraints" />
+          <FunctionImport Name="InsertGenre" ReturnType="Collection(Int32)">
+            <Parameter Name="p_genre" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="ReseedAll" />
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -768,15 +618,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Artist_Songs">
-            <EntityTypeMapping TypeName="HubohDB_v1Model.Artist_Songs">
-              <MappingFragment StoreEntitySet="Artist_Songs">
-                <ScalarProperty Name="artist_SongsID" ColumnName="artist_SongsID" />
-                <ScalarProperty Name="songID" ColumnName="songID" />
-                <ScalarProperty Name="artistID" ColumnName="artistID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Artists">
             <EntityTypeMapping TypeName="HubohDB_v1Model.Artists">
               <MappingFragment StoreEntitySet="Artists">
@@ -788,29 +629,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Artists_Albums">
-            <EntityTypeMapping TypeName="HubohDB_v1Model.Artists_Albums">
-              <MappingFragment StoreEntitySet="Artists_Albums">
-                <ScalarProperty Name="artist_AlbumID" ColumnName="artist_AlbumID" />
-                <ScalarProperty Name="albumID" ColumnName="albumID" />
-                <ScalarProperty Name="artistID" ColumnName="artistID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Composers">
             <EntityTypeMapping TypeName="HubohDB_v1Model.Composers">
               <MappingFragment StoreEntitySet="Composers">
                 <ScalarProperty Name="composerID" ColumnName="composerID" />
                 <ScalarProperty Name="composerName" ColumnName="composerName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Composers_Songs">
-            <EntityTypeMapping TypeName="HubohDB_v1Model.Composers_Songs">
-              <MappingFragment StoreEntitySet="Composers_Songs">
-                <ScalarProperty Name="composers_SongsID" ColumnName="composers_SongsID" />
-                <ScalarProperty Name="composerID" ColumnName="composerID" />
-                <ScalarProperty Name="songID" ColumnName="songID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -829,15 +652,6 @@
               <MappingFragment StoreEntitySet="Genres">
                 <ScalarProperty Name="genreID" ColumnName="genreID" />
                 <ScalarProperty Name="genreDescription" ColumnName="genreDescription" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Genres_Songs">
-            <EntityTypeMapping TypeName="HubohDB_v1Model.Genres_Songs">
-              <MappingFragment StoreEntitySet="Genres_Songs">
-                <ScalarProperty Name="genres_songsID" ColumnName="genres_songsID" />
-                <ScalarProperty Name="genreID" ColumnName="genreID" />
-                <ScalarProperty Name="songID" ColumnName="songID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -881,7 +695,40 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="Artist_Songs" TypeName="HubohDB_v1Model.Artist_Songs" StoreEntitySet="Artist_Songs">
+            <EndProperty Name="Artists">
+              <ScalarProperty Name="artistID" ColumnName="artistID" />
+            </EndProperty>
+            <EndProperty Name="Songs">
+              <ScalarProperty Name="songID" ColumnName="songID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Artists_Albums" TypeName="HubohDB_v1Model.Artists_Albums" StoreEntitySet="Artists_Albums">
+            <EndProperty Name="Albums">
+              <ScalarProperty Name="albumID" ColumnName="albumID" />
+            </EndProperty>
+            <EndProperty Name="Artists">
+              <ScalarProperty Name="artistID" ColumnName="artistID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Composers_Songs" TypeName="HubohDB_v1Model.Composers_Songs" StoreEntitySet="Composers_Songs">
+            <EndProperty Name="Composers">
+              <ScalarProperty Name="composerID" ColumnName="composerID" />
+            </EndProperty>
+            <EndProperty Name="Songs">
+              <ScalarProperty Name="songID" ColumnName="songID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Genres_Songs" TypeName="HubohDB_v1Model.Genres_Songs" StoreEntitySet="Genres_Songs">
+            <EndProperty Name="Genres">
+              <ScalarProperty Name="genreID" ColumnName="genreID" />
+            </EndProperty>
+            <EndProperty Name="Songs">
+              <ScalarProperty Name="songID" ColumnName="songID" />
+            </EndProperty>
+          </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="DisableAllConstraints" FunctionName="HubohDB_v1Model.Store.DisableAllConstraints" />
+          <FunctionImportMapping FunctionImportName="InsertGenre" FunctionName="HubohDB_v1Model.Store.InsertGenre" />
           <FunctionImportMapping FunctionImportName="ReseedAll" FunctionName="HubohDB_v1Model.Store.ReseedAll" />
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="HubohDB_v1Model.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="HubohDB_v1Model.Store.sp_creatediagram" />

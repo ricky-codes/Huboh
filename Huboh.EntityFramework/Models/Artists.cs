@@ -17,8 +17,8 @@ namespace Huboh.EntityFramework.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Artists()
         {
-            this.Artist_Songs = new HashSet<Artist_Songs>();
-            this.Artists_Albums = new HashSet<Artists_Albums>();
+            this.Songs = new HashSet<Songs>();
+            this.Albums = new HashSet<Albums>();
         }
     
         public int artistID { get; set; }
@@ -27,10 +27,10 @@ namespace Huboh.EntityFramework.Models
         public Nullable<int> albumCount { get; set; }
         public Nullable<int> publisherID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Artist_Songs> Artist_Songs { get; set; }
         public virtual Publishers Publishers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Artists_Albums> Artists_Albums { get; set; }
+        public virtual ICollection<Songs> Songs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Albums> Albums { get; set; }
     }
 }

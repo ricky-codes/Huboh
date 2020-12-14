@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cbc06e50525f48fc8411f40f0b3bbb3a" Name="Diagram1">
+        <EntityTypeShape EntityType="HubohDB_v1Model.Albums" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HubohDB_v1Model.Artists" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HubohDB_v1Model.Composers" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HubohDB_v1Model.FilePaths" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HubohDB_v1Model.Genres" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HubohDB_v1Model.Lyrics" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HubohDB_v1Model.Publishers" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HubohDB_v1Model.Songs" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HubohDB_v1Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="HubohDB_v1Model.FK__Artists__publish__7B264821" ManuallyRouted="false" />
+        <AssociationConnector Association="HubohDB_v1Model.FK__Songs__filepathI__74794A92" ManuallyRouted="false" />
+        <AssociationConnector Association="HubohDB_v1Model.FK__Songs__lyricsID__73852659" ManuallyRouted="false" />
+        <AssociationConnector Association="HubohDB_v1Model.Artist_Songs" ManuallyRouted="false" />
+        <AssociationConnector Association="HubohDB_v1Model.Artists_Albums" ManuallyRouted="false" />
+        <AssociationConnector Association="HubohDB_v1Model.Composers_Songs" ManuallyRouted="false" />
+        <AssociationConnector Association="HubohDB_v1Model.Genres_Songs" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

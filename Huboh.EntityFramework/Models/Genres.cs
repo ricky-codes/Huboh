@@ -17,13 +17,13 @@ namespace Huboh.EntityFramework.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Genres()
         {
-            this.Genres_Songs = new HashSet<Genres_Songs>();
+            this.Songs = new HashSet<Songs>();
         }
     
         public int genreID { get; set; }
         public string genreDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Genres_Songs> Genres_Songs { get; set; }
+        public virtual ICollection<Songs> Songs { get; set; }
     }
 }

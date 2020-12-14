@@ -10,6 +10,8 @@ namespace Huboh.Domain.Services
 
         private HubohDB_v1Entities _context = new HubohDB_v1Entities();
 
+
+        //Lyrics Repository not in use
         private GenericRepository<Songs> _songRepository;
         private GenericRepository<Artists> _artistsRepository;
         private GenericRepository<Albums> _albumsRepository;
@@ -17,11 +19,6 @@ namespace Huboh.Domain.Services
         private GenericRepository<Publishers> _publishersRepository;
         private GenericRepository<Composers> _composersRepository;
         private GenericRepository<FilePaths> _filepathsRepository;
-
-        private GenericRepository<Composers_Songs> _composers_songsRepository;
-        private GenericRepository<Artists_Albums> _artists_albumsRepository;
-        private GenericRepository<Artist_Songs> _artist_songsRepository;
-        private GenericRepository<Genres_Songs> _genres_songsRepository;
 
 
         public GenericRepository<Songs> SongsRepository
@@ -108,55 +105,6 @@ namespace Huboh.Domain.Services
             }
         }
         
-
-
-        public GenericRepository<Composers_Songs> Composers_SongsRepository
-        {
-            get
-            {
-                if (this._composers_songsRepository == null)
-                {
-                    this._composers_songsRepository = new GenericRepository<Composers_Songs>(_context);
-                }
-                return _composers_songsRepository;
-            }
-        }
-        
-        public GenericRepository<Artists_Albums> Artists_AlbumsRepository
-        {
-            get
-            {
-                if (this._artists_albumsRepository == null)
-                {
-                    this._artists_albumsRepository = new GenericRepository<Artists_Albums>(_context);
-                }
-                return _artists_albumsRepository;
-            }
-        }
-
-        public GenericRepository<Artist_Songs> Artist_SongsRepository
-        {
-            get
-            {
-                if (this._artist_songsRepository == null)
-                {
-                    this._artist_songsRepository = new GenericRepository<Artist_Songs>(_context);
-                }
-                return _artist_songsRepository;
-            }
-        }
-
-        public GenericRepository<Genres_Songs> Genres_SongsRepository
-        {
-            get
-            {
-                if (this._genres_songsRepository == null)
-                {
-                    this._genres_songsRepository = new GenericRepository<Genres_Songs>(_context);
-                }
-                return _genres_songsRepository;
-            }
-        }
 
         public bool Save()
         {

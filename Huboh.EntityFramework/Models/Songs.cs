@@ -17,9 +17,9 @@ namespace Huboh.EntityFramework.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Songs()
         {
-            this.Artist_Songs = new HashSet<Artist_Songs>();
-            this.Composers_Songs = new HashSet<Composers_Songs>();
-            this.Genres_Songs = new HashSet<Genres_Songs>();
+            this.Artists = new HashSet<Artists>();
+            this.Composers = new HashSet<Composers>();
+            this.Genres = new HashSet<Genres>();
         }
     
         public int songID { get; set; }
@@ -30,13 +30,13 @@ namespace Huboh.EntityFramework.Models
         public Nullable<int> lyricsID { get; set; }
         public Nullable<int> filepathID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Artist_Songs> Artist_Songs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Composers_Songs> Composers_Songs { get; set; }
         public virtual FilePaths FilePaths { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Genres_Songs> Genres_Songs { get; set; }
         public virtual Lyrics Lyrics { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Artists> Artists { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Composers> Composers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Genres> Genres { get; set; }
     }
 }

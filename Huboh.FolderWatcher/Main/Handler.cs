@@ -8,8 +8,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Huboh.Domain.Services;
 using Huboh.EntityFramework.Models;
-using Huboh.FolderWatcher.Activities;
-using Huboh.FolderWatcher.Activities.Mp3MetadataParser;
 using Huboh.FolderWatcher.Interfaces;
 using System.Runtime.CompilerServices;
 
@@ -18,37 +16,35 @@ namespace Huboh.FolderWatcher.Main
     public class Handler : IHandler
     {
         private UnitOfWork _unitOfWork;
-        private MetadataParser _metadataParser;
+        private IMetadataParser _metadataParser;
         private string _path;
-        private System.Timers.Timer _notificationTimer;
+        private NotificationTimer _notificationTimer;
 
-        private List<string> deletedFilesToProcess = new List<string>();
-        private List<string> createdFilesToProcess = new List<string>();
+        private List<string> oldFilesToProcess = new List<string>();
+        private List<string> newFilesToProcess = new List<string>();
 
-        public Handler(UnitOfWork unitOfWork, MetadataParser metadataParser , string path)
+        public Handler(UnitOfWork unitOfWork, IMetadataParser metadataParser , string path)
         {
             this._unitOfWork = unitOfWork;
             this._metadataParser = metadataParser;
+            this._notificationTimer = new NotificationTimer();
             this._path = path;
-            CreateTimer(2000);
+            _notificationTimer.CreateTimer(2000);
+            _notificationTimer.TimerElapsed += NotificationTimerElapsed;
         }
 
         public void FileChangedHandler(object sender, FileSystemEventArgs e)
         {
-            ResetTimer();
+            _notificationTimer.ResetTimer();
 
             if (e.ChangeType == WatcherChangeTypes.Deleted)
             {
-                deletedFilesToProcess.Add(e.FullPath);
-
-                //int affectedRecordId = this._unitOfWork.SongRepository.GetAll().First(_song => _song.musicCompletePath == e.FullPath).id;
-                //this._unitOfWork.SongRepository.Delete(affectedRecordId);
+                oldFilesToProcess.Add(e.FullPath);
             }
             else if(e.ChangeType == WatcherChangeTypes.Created)
             {
-                createdFilesToProcess.Add(e.FullPath);
+                newFilesToProcess.Add(e.FullPath);
             }
-            //this._unitOfWork.Save();
         }
 
         public void FileRenamedHandler(object sender, RenamedEventArgs e)
@@ -72,43 +68,57 @@ namespace Huboh.FolderWatcher.Main
 
 
 
-        private void CreateTimer(int timerInterval)
-        {
-            _notificationTimer = new System.Timers.Timer();
-            _notificationTimer.Interval = timerInterval;
-            _notificationTimer.Elapsed += NotificationTimerElapsed;
-
-        }
-
-        public void ResetTimer()
-        {
-            _notificationTimer.Stop();
-            _notificationTimer.Start();
-        }
-
-
         private void NotificationTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            Console.WriteLine("[createdFilesToProcess] {0}", createdFilesToProcess.Count.ToString());
-            Console.WriteLine("[deletedFilesToProcess] {0}", deletedFilesToProcess.Count.ToString());
+            _notificationTimer.StopTimer();
+            Console.WriteLine("[createdFilesToProcess] {0}", newFilesToProcess.Count.ToString());
+            Console.WriteLine("[deletedFilesToProcess] {0}", oldFilesToProcess.Count.ToString());
 
             //Process the lists
             //...
             //...
 
-            if(createdFilesToProcess.Count > 0)
+            if(newFilesToProcess.Count > 0)
             {
+                //CreateFileInstance
+                //Insert to Filepaths
+                //Create Song
+                //Insert to Song
+                foreach (var item in newFilesToProcess)
+                {
+                    FilePaths file = new FilePaths 
+                    {
+                        fileDirectory = _path,
+                        fileFullpath = item,
+                        fileFilename = item.Substring(0, _path.Length)
+                    };
+
+                    _metadataParser.CreateFileInstance(item);
+
+                    Songs song = new Songs
+                    {
+                        title = _metadataParser.GetTitle(),
+                        trackNumber = _metadataParser.GetTrackNumber(),
+                        songYear = _metadataParser.GetSongYear(),
+                        bpm = _metadataParser.GetSongBPM()
+                    };
+                    
+                    file.Songs.Add(song);
+
+
+                    _unitOfWork.FilepathsRepository.Insert(file);
+                }
+                
                 
             }
-            if(deletedFilesToProcess.Count > 0)
+            if(oldFilesToProcess.Count > 0)
             {
 
             }
 
-            _notificationTimer.Stop();
             Console.WriteLine("\n[timer] Elapsed");
-            createdFilesToProcess.Clear();
-            deletedFilesToProcess.Clear();
+            newFilesToProcess.Clear();
+            oldFilesToProcess.Clear();
         }
     }
 }

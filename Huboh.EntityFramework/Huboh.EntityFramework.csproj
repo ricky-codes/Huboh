@@ -54,92 +54,79 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Albums.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
+      <DependentUpon>DBModel_v1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Artists.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Artists_Albums.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Artist_Songs.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
+      <DependentUpon>DBModel_v1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Composers.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
+      <DependentUpon>DBModel_v1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Composers_Songs.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBModelV1.Context.cs">
+    <Compile Include="Models\DBModel_v1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBModelV1.Context.tt</DependentUpon>
+      <DependentUpon>DBModel_v1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBModelV1.cs">
+    <Compile Include="Models\DBModel_v1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBModelV1.tt</DependentUpon>
+      <DependentUpon>DBModel_v1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBModelV1.Designer.cs">
+    <Compile Include="Models\DBModel_v1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBModelV1.edmx</DependentUpon>
+      <DependentUpon>DBModel_v1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\FilePaths.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
+      <DependentUpon>DBModel_v1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Genres.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Genres_Songs.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
+      <DependentUpon>DBModel_v1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Lyrics.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
+      <DependentUpon>DBModel_v1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Publishers.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
+      <DependentUpon>DBModel_v1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Songs.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
+      <DependentUpon>DBModel_v1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
+      <DependentUpon>DBModel_v1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
+      <DependentUpon>DBModel_v1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>DBModelV1.tt</DependentUpon>
+      <DependentUpon>DBModel_v1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Models\DBModelV1.edmx">
+    <EntityDeploy Include="Models\DBModel_v1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBModelV1.Designer.cs</LastGenOutput>
+      <LastGenOutput>DBModel_v1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\DBModelV1.edmx.diagram">
-      <DependentUpon>DBModelV1.edmx</DependentUpon>
+    <None Include="Models\DBModel_v1.edmx.diagram">
+      <DependentUpon>DBModel_v1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Models\DBModelV1.Context.tt">
+    <Content Include="Models\DBModel_v1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModelV1.edmx</DependentUpon>
-      <LastGenOutput>DBModelV1.Context.cs</LastGenOutput>
+      <DependentUpon>DBModel_v1.edmx</DependentUpon>
+      <LastGenOutput>DBModel_v1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DBModelV1.tt">
+    <Content Include="Models\DBModel_v1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModelV1.edmx</DependentUpon>
-      <LastGenOutput>DBModelV1.cs</LastGenOutput>
+      <DependentUpon>DBModel_v1.edmx</DependentUpon>
+      <LastGenOutput>DBModel_v1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

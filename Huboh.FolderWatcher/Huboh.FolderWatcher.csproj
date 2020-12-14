@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,13 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IHandler.cs" />
+    <Compile Include="Interfaces\IMetadataParser.cs" />
     <Compile Include="Interfaces\ISystemWatcher.cs" />
     <Compile Include="Main\Handler.cs" />
-    <Compile Include="Mp3MetadataParser\MetadataParser.cs" />
+    <Compile Include="Main\NotificationTimer.cs" />
+    <Compile Include="MetadataParser\MetadataParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Watcher\SystemWatcher.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Huboh.Domain\Huboh.Domain.csproj">
       <Project>{75EE96F3-E365-48F5-8277-DCBA3B219976}</Project>

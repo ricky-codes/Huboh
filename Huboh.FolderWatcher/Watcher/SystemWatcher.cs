@@ -20,12 +20,12 @@ namespace Huboh.FolderWatcher.Watcher
 
         private FileSystemWatcher _fileSystemWatcher;
 
-        public SystemWatcher(string path, string fileType)
+        public SystemWatcher(string directory, string fileType)
         {
-            _fileSystemWatcher = GetFileSystemWatcher(path, fileType);
-            _handler = GetIHandler(GetUnitOfWork(), GetMetadataParser(), path);
+            _fileSystemWatcher = GetFileSystemWatcher(directory, fileType);
+            _handler = GetIHandler(GetUnitOfWork(), GetMetadataParser(), directory);
 
-            _fileSystemWatcher.Path = path;
+            _fileSystemWatcher.Path = directory;
             _fileSystemWatcher.Filter = fileType;
             _fileSystemWatcher.EnableRaisingEvents = true;
             _fileSystemWatcher.Created += _handler.FileChangedHandler;
@@ -33,7 +33,7 @@ namespace Huboh.FolderWatcher.Watcher
             _fileSystemWatcher.Deleted += _handler.FileChangedHandler;
             _fileSystemWatcher.Renamed += _handler.FileRenamedHandler;
 
-            Console.WriteLine("\n[fileSystemWatcher] created\n [watching] {0} \n [type] {1}", path, fileType);
+            Console.WriteLine("\n[fileSystemWatcher] created\n [watching] {0} \n [type] {1}", directory, fileType);
 
         }
 
@@ -42,12 +42,12 @@ namespace Huboh.FolderWatcher.Watcher
             return new FileSystemWatcher(path, fileType);
         }
 
-        public IHandler GetIHandler(UnitOfWork unitOfWork, MetadataParser metadataParser, string path)
+        public IHandler GetIHandler(UnitOfWork unitOfWork, IMetadataParser metadataParser, string path)
         {
             return new Handler(unitOfWork, metadataParser, path);
         }
 
-        public MetadataParser GetMetadataParser()
+        public IMetadataParser GetMetadataParser()
         {
             Console.WriteLine("[metadataParser] created");
             return new MetadataParser();
